@@ -13,6 +13,8 @@ class PaginaCadastro extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,22 +54,33 @@ class PaginaCadastro extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.0),
+            TextField(
+              controller: passwordConfirmController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Confirme a Senha',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 // Lógica de cadastro aqui
                 String nome = nameController.text;
                 String email = emailController.text;
                 String senha = passwordController.text;
-
+                String confirmaSenha = passwordConfirmController.text;
                 // Exemplo de impressão dos dados
                 print('Nome: $nome');
                 print('Email: $email');
                 print('Senha: $senha');
+                print('Confirmação de Senha: $confirmaSenha');
 
                 // Limpa os campos após o cadastro
                 nameController.clear();
                 emailController.clear();
                 passwordController.clear();
+                passwordConfirmController.clear();
               },
               child: Text('Cadastrar'),
               style: ElevatedButton.styleFrom(

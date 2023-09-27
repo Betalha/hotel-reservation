@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/room_details_screen.dart';
 
 class Room {
   final String title;
@@ -28,7 +29,12 @@ class RoomListScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             onTap: () {
-              // ao clicar no card
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RoomDetailsScreen(room: rooms[index],),
+                ),
+              );
             },
             child: Card(
               margin: EdgeInsets.all(8.0),

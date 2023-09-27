@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'room_list_screen.dart';
 
 class RoomDetailsScreen extends StatelessWidget {
-  final Room room; // Recebe o quarto específico como argumento
-
+  final Room room;
   RoomDetailsScreen({required this.room});
 
   @override
@@ -18,13 +17,10 @@ class RoomDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // Exibe a imagem do quarto
             Image.asset(room.img,
                 height: 200, width: double.infinity, fit: BoxFit.cover),
-
             SizedBox(height: 16),
 
-            // Exibe informações do quarto
             Text(
               room.title,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -40,7 +36,6 @@ class RoomDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 32),
 
-            // Formulário de reserva
             Text(
               'Reservar este quarto',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -54,10 +49,9 @@ class RoomDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 16),
 
-            // Botão de reserva
             ElevatedButton(
               onPressed: () {
-                // Ação ao pressionar o botão de reserva
+                // funcao do botao
               },
               child: Text('Reservar'),
               style: ElevatedButton.styleFrom(

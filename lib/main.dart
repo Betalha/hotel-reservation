@@ -47,7 +47,7 @@ class MainScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Cadastro(),
+                  builder: (context) => PaginaCadastro(),
                 ),
               );
             },

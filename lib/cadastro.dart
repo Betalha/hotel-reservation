@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Cadastro extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: PaginaCadastro(),
-    );
-  }
-}
-
 class PaginaCadastro extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController =
-      TextEditingController();
+  final TextEditingController passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +12,13 @@ class PaginaCadastro extends StatelessWidget {
       appBar: AppBar(
         title: Text('Cadastro'),
         backgroundColor: Colors.red,
+        leading: IconButton(
+    icon: Icon(Icons.arrow_back),
+    onPressed: () {
+      // Adicione aqui a lógica para voltar para a tela anterior
+      Navigator.of(context).pop();
+    },
+  ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

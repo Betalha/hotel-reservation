@@ -5,6 +5,8 @@ class PaginaLogin extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  String emailUsuario = "emailusuario@gmail.com";
+  String senhaUsuario = "123456789";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +40,19 @@ class PaginaLogin extends StatelessWidget {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RoomListScreen(),
-                  ),
-                );
                 // Lógica de cadastro aqui
 
                 String email = emailController.text;
                 String senha = passwordController.text;
+
+                if (email == emailUsuario && senha == senhaUsuario) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RoomListScreen(),
+                    ),
+                  );
+                }
 
                 // Exemplo de impressão dos dados
 

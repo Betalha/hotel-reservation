@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
 import 'cadastro.dart';
+import 'login.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,6 +53,21 @@ class MainScreen extends StatelessWidget {
               );
             },
             child: Text("Cadastro"),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.red,
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PaginaLogin(),
+                ),
+              );
+            },
+            child: Text("Login"),
             style: ElevatedButton.styleFrom(
               primary: Colors.red,
             ),

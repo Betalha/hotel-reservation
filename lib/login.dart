@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
 
-class PaginaCadastro extends StatelessWidget {
-  final TextEditingController nameController = TextEditingController();
+class PaginaLogin extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController =
-      TextEditingController();
 
-  String errorMessage = ''; // Mensagem de erro inicialmente vazia
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro'),
+        title: Text('Login'),
         backgroundColor: Colors.red,
       ),
       body: Padding(
@@ -22,13 +18,6 @@ class PaginaCadastro extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(
-                labelText: 'Nome',
-                border: OutlineInputBorder(),
-              ),
-            ),
             SizedBox(height: 16.0),
             TextField(
               controller: emailController,
@@ -47,48 +36,30 @@ class PaginaCadastro extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.0),
-            TextField(
-              controller: passwordConfirmController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Confirme a Senha',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RoomListScreen(),
+                  ),
+                );
                 // Lógica de cadastro aqui
-                String nome = nameController.text;
+
                 String email = emailController.text;
                 String senha = passwordController.text;
-                String confirmaSenha = passwordConfirmController.text;
-
-                if (nome.isNotEmpty &&
-                    email.isNotEmpty &&
-                    senha.isNotEmpty &&
-                    confirmaSenha.isNotEmpty) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RoomListScreen(),
-                    ),
-                  );
-                }
 
                 // Exemplo de impressão dos dados
-                print('Nome: $nome');
+
                 print('Email: $email');
                 print('Senha: $senha');
-                print('Confirmação de Senha: $confirmaSenha');
 
                 // Limpa os campos após o cadastro
-                nameController.clear();
+
                 emailController.clear();
                 passwordController.clear();
-                passwordConfirmController.clear();
               },
-              child: Text('Cadastrar'),
+              child: Text('Login'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.red,
               ),

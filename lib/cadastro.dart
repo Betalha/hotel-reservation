@@ -8,7 +8,7 @@ class PaginaCadastro extends StatelessWidget {
   final TextEditingController passwordConfirmController =
       TextEditingController();
 
-  String errorMessage = ''; // Mensagem de erro inicialmente vazia
+  final String errorMessage = ''; // Mensagem de erro inicialmente vazia
   @override
   Widget build(BuildContext context) {
     return Scaffold(

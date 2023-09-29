@@ -5,8 +5,8 @@ class PaginaLogin extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  String emailUsuario = "emailusuario@gmail.com";
-  String senhaUsuario = "123456789";
+  final String emailUsuario = "emailusuario@gmail.com";
+  final String senhaUsuario = "123456789";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

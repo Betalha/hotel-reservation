@@ -27,20 +27,20 @@ class MainScreen extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RoomListScreen(),
-                ),
-              );
-            },
-            child: Text('Ver Quartos'),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.red,
-            ),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => RoomListScreen(),
+          //       ),
+          //     );
+          //   },
+          //   child: Text('Ver Quartos'),
+          //   style: ElevatedButton.styleFrom(
+          //     primary: Colors.red,
+          //   ),
+          // ),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {

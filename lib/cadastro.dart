@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
 
 class PaginaCadastro extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -56,6 +57,12 @@ class PaginaCadastro extends StatelessWidget {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RoomListScreen(),
+                  ),
+                );
                 // Lógica de cadastro aqui
                 String nome = nameController.text;
                 String email = emailController.text;

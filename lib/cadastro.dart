@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/main.dart';
 import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
+import 'User.dart';
 
 class PaginaCadastro extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -68,11 +70,34 @@ class PaginaCadastro extends StatelessWidget {
                     email.isNotEmpty &&
                     senha.isNotEmpty &&
                     confirmaSenha.isNotEmpty) {
+                  User newUser =
+                      User(name: nome, email: email, password: senha);
+                  users.add(newUser);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => RoomListScreen(),
                     ),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Erro de cadastro'),
+                        content: Text('Preencha todos os campos'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pop(); // Fecha o AlertDialog
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 }
 

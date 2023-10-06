@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/main.dart';
 import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
+import 'User.dart';
 
 class PaginaLogin extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final String emailUsuario = "emailusuario@gmail.com";
-  final String senhaUsuario = "123456789";
+  final String nomeUsuario = "Error";
+  final String emailUsuario = "Error";
+  final String senhaUsuario = "Error";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +48,40 @@ class PaginaLogin extends StatelessWidget {
                 String email = emailController.text;
                 String senha = passwordController.text;
 
-                if (email == emailUsuario && senha == senhaUsuario) {
+                User achouUser = users.firstWhere(
+                    (user) => user.email == email && user.password == senha,
+                    orElse: () => User(
+                        name: nomeUsuario,
+                        email: emailUsuario,
+                        password: senhaUsuario));
+
+                if (achouUser.name != nomeUsuario) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => RoomListScreen(),
                     ),
+                  );
+                } else {
+                  // Credenciais incorretas, exiba uma mensagem de erro
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Erro de login'),
+                        content:
+                            Text('Credenciais incorretas. Tente novamente.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pop(); // Fecha o AlertDialog
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
                   );
                 }
 

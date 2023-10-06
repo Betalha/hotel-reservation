@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 //import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
 import 'cadastro.dart';
 import 'login.dart';
+import 'User.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+List<User> users = [];
 
 class MyApp extends StatelessWidget {
   @override

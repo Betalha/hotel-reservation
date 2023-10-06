@@ -12,9 +12,12 @@ class Room {
 
 class RoomListScreen extends StatelessWidget {
   final List<Room> rooms = [
-    Room('Quarto Deluxe', 'Quarto luxuoso com vista para o mar', 200.00, "img/exc.jpeg"),
-    Room('Suíte Executiva', 'Suíte executiva com serviço de mordomo', 300.00, "img/luxo.jpeg"),
-    Room('Quarto Padrão', 'Quarto confortável com todas as comodidades', 100.00, "img/basic.jpeg"),
+    Room('Quarto Deluxe', 'Quarto luxuoso com vista para o mar', 200.00,
+        "img/exc.jpeg"),
+    Room('Suíte Executiva', 'Suíte executiva com serviço de mordomo', 300.00,
+        "img/luxo.jpeg"),
+    Room('Quarto Padrão', 'Quarto confortável com todas as comodidades', 100.00,
+        "img/basic.jpeg"),
   ];
 
   @override
@@ -32,7 +35,9 @@ class RoomListScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => RoomDetailsScreen(room: rooms[index],),
+                  builder: (context) => RoomDetailsScreen(
+                    room: rooms[index],
+                  ),
                 ),
               );
             },

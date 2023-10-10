@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel/main.dart';
 import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
 import 'User.dart';
+import 'Perfil.dart';
 
 class PaginaLogin extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -59,7 +60,7 @@ class PaginaLogin extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RoomListScreen(),
+                      builder: (context) => Perfil(user: achouUser),
                     ),
                   );
                 } else {

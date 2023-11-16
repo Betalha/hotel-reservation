@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'User.dart'; // Importe a classe User
+import 'User.dart';
 
 class Perfil extends StatelessWidget {
   final User user;
@@ -13,21 +13,33 @@ class Perfil extends StatelessWidget {
         title: Text('Perfil de Usuário'),
         backgroundColor: Colors.red,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Nome: ${user.name}',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              'Email: ${user.email}',
-              style: TextStyle(fontSize: 18),
-            ),
-            // Adicione outros campos de informação do usuário aqui, se necessário
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Campo de imagem de perfil
+              CircleAvatar(
+                radius: 60, // Ajuste conforme necessário
+                backgroundImage: AssetImage(
+                    'img/PerfilTeste.png'), // Substitua pelo caminho da imagem do perfil
+              ),
+              SizedBox(
+                  height:
+                      20), // Espaçamento entre a imagem e as informações do usuário
+              Text(
+                'Nome: ${user.name}',
+                style: TextStyle(fontSize: 18),
+              ),
+              Text(
+                'Email: ${user.email}',
+                style: TextStyle(fontSize: 18),
+              ),
+              // Adicione outros campos de informação do usuário aqui, se necessário
+            ],
+          ),
         ),
       ),
     );

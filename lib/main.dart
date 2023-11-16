@@ -3,6 +3,7 @@ import 'package:hotel/eventos.dart';
 import 'cadastro.dart';
 import 'login.dart';
 import 'perfil.dart';
+import 'room_list_screen.dart'; // Importe a tela de reserva de quartos
 import 'User.dart';
 
 void main() {
@@ -10,8 +11,7 @@ void main() {
 }
 
 List<User> users = [];
-bool isLoggedIn =
-    false; // Adicione essa variável para controlar o status de login
+bool isLoggedIn = false;
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +30,6 @@ class HotelPhotoScreen extends StatelessWidget {
         title: Text('Fotos do Hotel'),
         backgroundColor: Colors.red,
         actions: [
-          // Adicione um indicador de login na barra de aplicativos
           isLoggedIn
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -39,7 +38,7 @@ class HotelPhotoScreen extends StatelessWidget {
                     child: Icon(Icons.person, color: Colors.black),
                   ),
                 )
-              : Container(), // Oculta o indicador se o usuário não estiver logado
+              : Container(),
         ],
       ),
       body: Column(
@@ -104,8 +103,6 @@ class HotelPhotoScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // Aqui, estamos criando uma instância fictícia de User.
-                      // Você deve substituir isso com o usuário real que está logado.
                       User currentUser = User(
                           name: 'Nome do Usuário',
                           email: 'usuario@email.com',
@@ -119,6 +116,23 @@ class HotelPhotoScreen extends StatelessWidget {
                       );
                     },
                     child: Text("Perfil"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RoomListScreen(),
+                        ),
+                      );
+                    },
+                    child: Text("Reserva de Quartos"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
@@ -148,7 +162,6 @@ class HotelPhotoScreen extends StatelessWidget {
                     child: HotelPhoto(imageUrl: 'img/exc.jpeg'),
                   ),
                 ),
-                // Adicione mais imagens conforme necessário
               ],
             ),
           ),

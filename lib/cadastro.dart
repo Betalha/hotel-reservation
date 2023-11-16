@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hotel/main.dart';
-import 'room_list_screen.dart'; // Importe o arquivo da tela de quartos
 import 'User.dart';
 
 class PaginaCadastro extends StatelessWidget {
@@ -77,7 +76,7 @@ class PaginaCadastro extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RoomListScreen(),
+                      builder: (context) => MyApp(),
                     ),
                   );
                 } else {

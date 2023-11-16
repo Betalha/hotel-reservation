@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:hotel/eventos.dart';
 import 'cadastro.dart';
 import 'login.dart';
@@ -11,26 +10,14 @@ void main() {
 }
 
 List<User> users = [];
-
-class AuthProvider extends ChangeNotifier {
-  bool _isLoggedIn = false;
-
-  bool get isLoggedIn => _isLoggedIn;
-
-  set isLoggedIn(bool value) {
-    _isLoggedIn = value;
-    notifyListeners();
-  }
-}
+bool isLoggedIn =
+    false; // Adicione essa variável para controlar o status de login
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
-      child: MaterialApp(
-        home: HotelPhotoScreen(),
-      ),
+    return MaterialApp(
+      home: HotelPhotoScreen(),
     );
   }
 }
@@ -40,29 +27,26 @@ class HotelPhotoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fotos do Hotel'),
+        title: Text('Fotos do Hotel'),
         backgroundColor: Colors.red,
         actions: [
-          Consumer<AuthProvider>(
-            builder: (context, authProvider, child) {
-              return authProvider.isLoggedIn
-                  ? const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.person, color: Colors.black),
-                      ),
-                    )
-                  : Container();
-            },
-          ),
+          // Adicione um indicador de login na barra de aplicativos
+          isLoggedIn
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person, color: Colors.black),
+                  ),
+                )
+              : Container(), // Oculta o indicador se o usuário não estiver logado
         ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -82,7 +66,7 @@ class HotelPhotoScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
@@ -93,13 +77,13 @@ class HotelPhotoScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("Login"),
+                    child: Text("Login"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
@@ -110,41 +94,31 @@ class HotelPhotoScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("Eventos"),
+                    child: Text("Eventos"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      final authProvider =
-                          Provider.of<AuthProvider>(context, listen: false);
+                      // Aqui, estamos criando uma instância fictícia de User.
+                      // Você deve substituir isso com o usuário real que está logado.
+                      User currentUser = User(
+                          name: 'Nome do Usuário',
+                          email: 'usuario@email.com',
+                          password: "12345");
 
-                      if (authProvider.isLoggedIn) {
-                        User currentUser = User(
-                            name: 'Nome do Usuário',
-                            email: 'usuario@email.com',
-                            password: "12345");
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Perfil(user: currentUser),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PaginaLogin(),
-                          ),
-                        );
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Perfil(user: currentUser),
+                        ),
+                      );
                     },
-                    child: const Text("Perfil"),
+                    child: Text("Perfil"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
@@ -174,6 +148,7 @@ class HotelPhotoScreen extends StatelessWidget {
                     child: HotelPhoto(imageUrl: 'img/exc.jpeg'),
                   ),
                 ),
+                // Adicione mais imagens conforme necessário
               ],
             ),
           ),
@@ -191,7 +166,7 @@ class HotelPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0),
       child: Image.asset(
         imageUrl,
         fit: BoxFit.cover,
